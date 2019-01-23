@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace AntiGerryMapping
 {
-	class Class1
-	{
+	class county {
+
+		//constructor
+		county(string name, county[] borders, int population, int votingPop, Dictionary<string, int> demo) { }
+
 	}
 }
