@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="County.cs" />
     <Compile Include="MainControl.cs">
       <SubType>Form</SubType>
     </Compile>
