@@ -4,50 +4,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AntiGerryMapping
-{
+namespace AntiGerryMapping {
+
 	class county {
 
-		//defining the properties
-		string name;
-		county[] borders;
-		int population;
-		Dictionary<string, int> demo;
-
 		//constructor
-		county(string name, county[] borders, int population, int votingpop, Dictionary<string, int> demo) {
+		public county(string name, county[] borders, int population, int votingpop, int[] demo) {
 
-			this.name = name;
-			this.borders = borders;
-			this.population = votingpop;
+			//sets certain properties
+			string Name = name;
+			county[] Borders = borders;
+			int Population = votingpop;
+			int[] Demo = demo;
 			
 			//finds percentages based on population and demo
-			foreach (KeyValuePair<string, int> dem in demo) {
-				this.demo.Add(dem.Key, dem.Value * votingpop / population);
+			for(int i = 0; i < Demo.Length; ++i) {
+				Demo[i] = (Demo[i] * votingpop / population);
 			}
 
 		}
 
 		//properties
-		public string Name {
-			get {return name;}
-			set {name = value;}
-		}
-
-		public county[] Borders {
-			get {return borders;}
-			set {borders = value;}
-		}
-
-		public int Pop {
-			get {return population;}
-			set {population = value;}
-		}
-
-		public Dictionary<string, int> Demo {
-			get {return demo;}
-			set {demo = value;}
-		}
+		public string Name {get => Name; set => Name = value;}
+		public county[] Borders {get => Borders; set => Borders = value;}
+		public int Population {get => Population; set => Population = value;}
+		public int[] Demo {get => Demo; set => Demo = value;}
 
 	}
 }

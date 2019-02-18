@@ -82,7 +82,7 @@
 			this.tabControl1.Location = new System.Drawing.Point(12, 12);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(358, 599);
+			this.tabControl1.Size = new System.Drawing.Size(358, 410);
 			this.tabControl1.TabIndex = 0;
 			// 
 			// tabPage1
@@ -116,15 +116,15 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(350, 573);
+			this.tabPage1.Size = new System.Drawing.Size(350, 384);
 			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "tabPage1";
+			this.tabPage1.Text = "County 1";
 			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
 			// label13
 			// 
 			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(10, 420);
+			this.label13.Location = new System.Drawing.Point(6, 335);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(41, 13);
 			this.label13.TabIndex = 25;
@@ -132,16 +132,18 @@
 			// 
 			// numericUpDown8
 			// 
-			this.numericUpDown8.Location = new System.Drawing.Point(62, 418);
+			this.numericUpDown8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.numericUpDown8.Location = new System.Drawing.Point(53, 333);
 			this.numericUpDown8.Name = "numericUpDown8";
-			this.numericUpDown8.Size = new System.Drawing.Size(257, 20);
+			this.numericUpDown8.Size = new System.Drawing.Size(291, 20);
 			this.numericUpDown8.TabIndex = 24;
 			// 
 			// Sex
 			// 
 			this.Sex.AutoSize = true;
 			this.Sex.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.Sex.Location = new System.Drawing.Point(11, 392);
+			this.Sex.Location = new System.Drawing.Point(6, 308);
 			this.Sex.Name = "Sex";
 			this.Sex.Size = new System.Drawing.Size(34, 17);
 			this.Sex.TabIndex = 23;
@@ -149,15 +151,17 @@
 			// 
 			// numericUpDown7
 			// 
-			this.numericUpDown7.Location = new System.Drawing.Point(96, 361);
+			this.numericUpDown7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.numericUpDown7.Location = new System.Drawing.Point(92, 283);
 			this.numericUpDown7.Name = "numericUpDown7";
-			this.numericUpDown7.Size = new System.Drawing.Size(223, 20);
+			this.numericUpDown7.Size = new System.Drawing.Size(252, 20);
 			this.numericUpDown7.TabIndex = 22;
 			// 
 			// label12
 			// 
 			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(6, 368);
+			this.label12.Location = new System.Drawing.Point(6, 285);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(80, 13);
 			this.label12.TabIndex = 21;
@@ -166,7 +170,7 @@
 			// label11
 			// 
 			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(6, 322);
+			this.label11.Location = new System.Drawing.Point(6, 259);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(79, 13);
 			this.label11.TabIndex = 20;
@@ -174,22 +178,26 @@
 			// 
 			// numericUpDown6
 			// 
-			this.numericUpDown6.Location = new System.Drawing.Point(95, 322);
+			this.numericUpDown6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.numericUpDown6.Location = new System.Drawing.Point(91, 257);
 			this.numericUpDown6.Name = "numericUpDown6";
-			this.numericUpDown6.Size = new System.Drawing.Size(224, 20);
+			this.numericUpDown6.Size = new System.Drawing.Size(253, 20);
 			this.numericUpDown6.TabIndex = 19;
 			// 
 			// numericUpDown5
 			// 
-			this.numericUpDown5.Location = new System.Drawing.Point(91, 287);
+			this.numericUpDown5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.numericUpDown5.Location = new System.Drawing.Point(86, 231);
 			this.numericUpDown5.Name = "numericUpDown5";
-			this.numericUpDown5.Size = new System.Drawing.Size(229, 20);
+			this.numericUpDown5.Size = new System.Drawing.Size(258, 20);
 			this.numericUpDown5.TabIndex = 18;
 			// 
 			// label10
 			// 
 			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(6, 287);
+			this.label10.Location = new System.Drawing.Point(6, 233);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(74, 13);
 			this.label10.TabIndex = 17;
@@ -199,15 +207,15 @@
 			// 
 			this.numericUpDown4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.numericUpDown4.Location = new System.Drawing.Point(106, 252);
+			this.numericUpDown4.Location = new System.Drawing.Point(101, 205);
 			this.numericUpDown4.Name = "numericUpDown4";
-			this.numericUpDown4.Size = new System.Drawing.Size(214, 20);
+			this.numericUpDown4.Size = new System.Drawing.Size(243, 20);
 			this.numericUpDown4.TabIndex = 16;
 			// 
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(6, 254);
+			this.label9.Location = new System.Drawing.Point(6, 207);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(89, 13);
 			this.label9.TabIndex = 15;
@@ -216,7 +224,7 @@
 			// label8
 			// 
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(6, 217);
+			this.label8.Location = new System.Drawing.Point(6, 181);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(128, 13);
 			this.label8.TabIndex = 14;
@@ -226,16 +234,16 @@
 			// 
 			this.numericUpDown3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.numericUpDown3.Location = new System.Drawing.Point(145, 215);
+			this.numericUpDown3.Location = new System.Drawing.Point(140, 179);
 			this.numericUpDown3.Name = "numericUpDown3";
-			this.numericUpDown3.Size = new System.Drawing.Size(174, 20);
+			this.numericUpDown3.Size = new System.Drawing.Size(204, 20);
 			this.numericUpDown3.TabIndex = 13;
 			this.numericUpDown3.ThousandsSeparator = true;
 			// 
 			// label7
 			// 
 			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(6, 150);
+			this.label7.Location = new System.Drawing.Point(6, 155);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(76, 13);
 			this.label7.TabIndex = 12;
@@ -245,9 +253,9 @@
 			// 
 			this.numericUpDown2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.numericUpDown2.Location = new System.Drawing.Point(95, 148);
+			this.numericUpDown2.Location = new System.Drawing.Point(88, 153);
 			this.numericUpDown2.Name = "numericUpDown2";
-			this.numericUpDown2.Size = new System.Drawing.Size(227, 20);
+			this.numericUpDown2.Size = new System.Drawing.Size(256, 20);
 			this.numericUpDown2.TabIndex = 11;
 			this.numericUpDown2.ThousandsSeparator = true;
 			// 
@@ -345,11 +353,12 @@
 			this.CountyName.Name = "CountyName";
 			this.CountyName.Size = new System.Drawing.Size(294, 20);
 			this.CountyName.TabIndex = 0;
+			this.CountyName.Text = "County 1";
 			// 
 			// finishButton
 			// 
 			this.finishButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.finishButton.Location = new System.Drawing.Point(294, 620);
+			this.finishButton.Location = new System.Drawing.Point(294, 431);
 			this.finishButton.Name = "finishButton";
 			this.finishButton.Size = new System.Drawing.Size(75, 23);
 			this.finishButton.TabIndex = 1;
@@ -359,7 +368,7 @@
 			// newButton
 			// 
 			this.newButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.newButton.Location = new System.Drawing.Point(213, 620);
+			this.newButton.Location = new System.Drawing.Point(213, 431);
 			this.newButton.Name = "newButton";
 			this.newButton.Size = new System.Drawing.Size(75, 23);
 			this.newButton.TabIndex = 2;
@@ -369,7 +378,7 @@
 			// deleteButton
 			// 
 			this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.deleteButton.Location = new System.Drawing.Point(110, 620);
+			this.deleteButton.Location = new System.Drawing.Point(110, 431);
 			this.deleteButton.Name = "deleteButton";
 			this.deleteButton.Size = new System.Drawing.Size(97, 23);
 			this.deleteButton.TabIndex = 3;
@@ -379,7 +388,7 @@
 			// demoButton
 			// 
 			this.demoButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.demoButton.Location = new System.Drawing.Point(15, 620);
+			this.demoButton.Location = new System.Drawing.Point(15, 431);
 			this.demoButton.Name = "demoButton";
 			this.demoButton.Size = new System.Drawing.Size(89, 23);
 			this.demoButton.TabIndex = 4;
@@ -391,7 +400,7 @@
 			this.AcceptButton = this.finishButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(382, 652);
+			this.ClientSize = new System.Drawing.Size(382, 463);
 			this.Controls.Add(this.demoButton);
 			this.Controls.Add(this.deleteButton);
 			this.Controls.Add(this.newButton);
