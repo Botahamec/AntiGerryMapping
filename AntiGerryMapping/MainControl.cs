@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace AntiGerryMapping
 {
@@ -17,5 +19,11 @@ namespace AntiGerryMapping
 			InitializeComponent();
 		}
 
+		private void finishButton_Click(object sender, EventArgs e) {
+
+			Popper popper = new Popper();
+			county[] counties = popper.LoadCounties();
+
+		}
 	}
 }

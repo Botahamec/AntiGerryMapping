@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.IO;
+using System.Diagnostics;
 
 /*
 	** Popper is an algorithm that narrows down the number of scenarios before GerryMapping executes **
@@ -26,17 +27,20 @@ namespace AntiGerryMapping {
 	//contains methods for Popper
 	class Popper {
 
-		
-		county[] LoadCounties() {
+		//loads list of counties from counties.json
+		public county[] LoadCounties() {
 
 			//converts counties.json into a string
 			string json;
-			using (var streamReader = new StreamReader(@"counties.json", Encoding.UTF8)) {
+			using (var streamReader = new StreamReader(@"../../counties.json", Encoding.UTF8)) {
 				json = streamReader.ReadToEnd();
 			}
 
 			JsonSerializer serializer = new JsonSerializer();
-			county[] counties = (county[])serializer.Deserialize(new JTokenReader(json), typeof(county[]));
+			county[] counties = JsonConvert.DeserializeObject<List<county>>(json, new JsonSerializerSettings {
+				ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor
+			}).ToArray();
+			Debug.WriteLine(JsonConvert.SerializeObject(counties));
 			return counties;
 
 		}

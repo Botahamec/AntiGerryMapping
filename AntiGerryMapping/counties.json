@@ -1,0 +1,23 @@
+﻿[
+  {
+    "name": "Erie",
+    "borders": [
+      "Niagara",
+      "Ontario",
+      "Genesee",
+      "Wyoming",
+      "Cattaraugus",
+      "Chataqua"
+    ],
+    "population": 731556,
+    "demo": [
+      128022,
+      580855,
+      102418,
+      5121,
+      27799,
+      0,
+      377483
+    ]
+  }
+]

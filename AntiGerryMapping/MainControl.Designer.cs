@@ -364,6 +364,7 @@
 			this.finishButton.TabIndex = 1;
 			this.finishButton.Text = "Finish";
 			this.finishButton.UseVisualStyleBackColor = true;
+			this.finishButton.Click += new System.EventHandler(this.finishButton_Click);
 			// 
 			// newButton
 			// 
