@@ -15,8 +15,8 @@ namespace AntiGerryMapping {
 		}
 
 		//properties
-		int Number {get => Number; set => Number = value;}
-		county[] Counties { get => Counties; set => Counties = value;}
+		int Number {get; set;}
+		county[] Counties { get; set;}
 
 	}
 

@@ -14,7 +14,7 @@ namespace AntiGerryMapping {
 		}
 
 		//properties
-		district[] Districts {get => Districts; set => Districts = value;}
+		district[] Districts {get; set;}
 
 	}
 

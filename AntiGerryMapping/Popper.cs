@@ -37,10 +37,7 @@ namespace AntiGerryMapping {
 			}
 
 			JsonSerializer serializer = new JsonSerializer();
-			county[] counties = JsonConvert.DeserializeObject<List<county>>(json, new JsonSerializerSettings {
-				ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor
-			}).ToArray();
-			Debug.WriteLine(JsonConvert.SerializeObject(counties));
+			county[] counties = JsonConvert.DeserializeObject<List<county>>(json).ToArray();
 			return counties;
 
 		}
