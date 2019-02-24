@@ -18,9 +18,7 @@ namespace AntiGerryMapping {
 	{
 
 		//defines variables
-		string[] demographics;
-		county[] counties;
-		int yloc = 82;
+		SaveFile save;
 
 		//A demographic entry
 		class NumEntry {
@@ -36,107 +34,162 @@ namespace AntiGerryMapping {
 				name = Name;
 
 				//sets up label
-				label = new Label();
-				label.Text = name;
-				label.AutoSize = true;
-				label.Location = new Point(6, yloc);
+				label = new Label {
+					Text = name,
+					AutoSize = true,
+					Location = new Point(6, yloc)
+				};
 
 				//sets up numeric up down
-				box = new NumericUpDown();
-				box.Anchor = ((AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right));
-				box.Location = new Point(143, yloc);
-				box.Size = new Size(50, 20);
-				box.Maximum = decimal.MaxValue;
-				box.Value = value;
+				box = new NumericUpDown {
+					Anchor = ((AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right)),
+					Location = new Point(143, yloc),
+					Size = new Size(50, 20),
+					Maximum = int.MaxValue,
+					Value = value,
+					Name = name
+				};
 			}
-
 		}
 
-		//returns array of demographics from demographics.json
-		public string[] DemographicsFile() {
-			JsonSerializer serializer = new JsonSerializer(); //initializes serializer
-			string demojson;
-			using (var streamReader = new StreamReader(@"../../demographics.json", Encoding.UTF8)) {
-				demojson = streamReader.ReadToEnd(); //reads demographics.json
-			}
-			return JsonConvert.DeserializeObject<List<string>>(demojson).ToArray(); //converts json to array
-		}
-
-		public void LoadDemographics() {demographics = DemographicsFile();} //loads list of demographics
-
-		//loads list of counties
-		public void LoadCounties() {
-			JsonSerializer serializer = new JsonSerializer(); //initializes serializer
-			string countiesjson;
-			using (var streamReader = new StreamReader(@"../../counties.json", Encoding.UTF8)) {
-				countiesjson = streamReader.ReadToEnd(); //reads counties.json
-			}
-			counties = JsonConvert.DeserializeObject<List<county>>(countiesjson).ToArray();
-		}
+		//load and save functions
+		public void LoadCounties(string file = @"../../counties.json") {save = new SaveFile(file);}
+		public void SaveCounties(string file = @"../../counties.json") {File.WriteAllText(file, save.ToJson());}
 
 		//sets up a county tab
-		public void InitiateCounty(string name, int[] dems, int voters) {
+		public void InitiateCounty(county county) {
 
 			//adds name label
-			TabPage newTab = new TabPage { Text = name };
+			TabPage newTab = new TabPage { Text = county.name };
 			Label nameLabel = new Label {
 				Text = "Name:",
 				AutoSize = true,
-				Location = new Point(6, 7),
+				Location = new Point(6, 7)
 			};
 			TextBox nameBox = new TextBox {
-				Text = name,
+				Text = county.name,
 				Anchor = ((AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right)),
 				Location = new Point(143, 4),
 				Size = new Size(50, 20),
+				Name = "nameBox"
 			};
+			nameBox.TextChanged += new EventHandler(nameBoxTextChange);
 			newTab.Controls.Add(nameBox);
 			newTab.Controls.Add(nameLabel);
 
 			//adds voter population elements
-			NumEntry pop = new NumEntry("Population", 30, voters);
+			NumEntry pop = new NumEntry("Population", 30, county.population);
+			pop.box.ValueChanged += new EventHandler(populationChange);
 			newTab.Controls.Add(pop.box);
 			newTab.Controls.Add(pop.label);
 
+			int yloc = 82; //sets y-position of demographic entries
+
 			//adds form for each demographic
-			for (int a = 0; a < demographics.Length; ++a) {
-				NumEntry entry = new NumEntry(demographics[a], yloc, dems[a]);
+			for (int a = 0; a < save.Demographics.Length; ++a) {
+				NumEntry entry = new NumEntry(save.Demographics[a], yloc, county.demo[a]); //creates entry
+				entry.box.ValueChanged += new EventHandler(demographicChange);
 				newTab.Controls.Add(entry.label); //adds label
 				newTab.Controls.Add(entry.box); //adds numericUpDown
 				yloc += 24; //increases y value for next entry
 			}
 
 			tabControl1.TabPages.Add(newTab); //adds tab to app
-			yloc = 82;
 		}
 
 		//initializes the app to have all of the counties and demographics required
 		public void InitializeApp() {
 
+			//default arrays
+			string[] defaultDemographics = {
+				"Older Persons (Over 65)",
+				"White Persons",
+				"African-American Persons",
+				"Hispanic/Latino Persons",
+				"Asian Persons",
+				"Native Persons",
+				"Pacific Persons",
+				"Female Persons"
+			};
+
+			county[] defaultCounties = {
+				new county("County 1", new string[] { }, 0, new int[] {0, 0, 0, 0, 0, 0, 0, 0})
+			};
+
+			tabControl1.TabPages.Remove(tabPage1); //removes first page
+
+			//default demographics and counties
+			if (save.Demographics == null || save.Demographics.Length == 0) 
+				{save.Demographics = defaultDemographics;}
+			if (save.Counties == null || save.Counties.Length == 0) { save.Counties = defaultCounties; }
+
 			//creates a new tab for each county
-			for(int i = 0; i < counties.Length; ++i) {
-				county current = counties[i];
-				InitiateCounty(counties[i].name, counties[i].demo, counties[i].population);
+			for (int i = 0; i < save.Counties.Length; ++i) {
+				InitiateCounty(save.Counties[i]);
+			} 
+
+		}
+
+		//deletes all the tabs in the app
+		public void DeleteAllTabs() {
+			foreach (TabPage tab in tabControl1.TabPages) {
+				tabControl1.TabPages.Remove(tab);
 			}
-
-			//removes first page if it's unnecessary
-			if (counties.Length != 0) { tabControl1.TabPages.Remove(tabPage1); } 
-
 		}
 
 		//initializes demographics
 		public MainControl() {
-			demographics = DemographicsFile(); //loads the array of demographics
-			LoadCounties(); //loads the array of counties
+			LoadCounties(); //loads from counties.json
 			InitializeComponent(); //initializes app
-			InitializeApp();
+			InitializeApp(); //creates tabs
 		}
 
+		//runs whenever the text in the name box changes
+		private void nameBoxTextChange(object sender, EventArgs e) {
+			TextBox box = (TextBox)sender; //text box
+			TabPage tab = (TabPage)box.Parent; //tab
+			int index = save.getIndex(tab.Text); //finds county
+			tab.Text = box.Text; //changes tab text
+			save.Counties[index].name = box.Text; //updates save
+		}
+
+		//runs whenever the value in the population box changes
+		private void populationChange(object sender, EventArgs e) {
+			NumericUpDown box = (NumericUpDown)sender;
+			TabPage tab = (TabPage)box.Parent;
+			int index = save.getIndex(tab.Text);
+			save.Counties[index].population = (int)Math.Round(box.Value);
+		}
+
+		//runs whenever the value in a demographic box changes
+		private void demographicChange(object sender, EventArgs e) {
+			NumericUpDown box = (NumericUpDown)sender;
+			TabPage tab = (TabPage)box.Parent;
+			int index = save.getIndex(tab.Text);
+			int demo = save.getDemoIndex(box.Name);
+			save.Counties[index].demo[demo] = (int)Math.Round(box.Value);
+		}
+
+		//activates after clicking "New"
+		private void newToolStripMenuItem_Click(object sender, EventArgs e) {
+			DeleteAllTabs(); //clears out the app
+			save = new SaveFile(); //empties out the save file
+			InitializeApp(); //restarts the app
+		}
+
+		//saves to counties.json
+		private void saveToolStripMenuItem_Click(object sender, EventArgs e) {SaveCounties();}
+
+		//shows About box
+		private void aboutToolStripMenuItem1_Click(object sender, EventArgs e) {
+			About box = new About();
+			box.ShowDialog();
+		}
+
+		//runs after pressing Finish
 		private void finishButton_Click(object sender, EventArgs e) {
-
-			Popper popper = new Popper();
-			county[] counties = popper.LoadCounties();
-
+			Debug.WriteLine(save.ToJson());
 		}
+
 	}
 }
