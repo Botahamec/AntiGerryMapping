@@ -48,6 +48,11 @@ namespace AntiGerryMapping {
 			return JsonConvert.SerializeObject(this);
 		}
 
+		public void Save(string file = @"../../counties.json") {
+			File.WriteAllText(file, ToJson());
+		}
+
+		/* These Methods Have Been Removed Because They Are No Longer Necessary
 		//get index of county from name
 		public int getIndex(string name) {
 			for (int i = 0; i < Counties.Length; ++i) {
@@ -63,6 +68,7 @@ namespace AntiGerryMapping {
 			}
 			return 0;
 		}
+		*/
 
 	}
 }

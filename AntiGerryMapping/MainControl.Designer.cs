@@ -59,14 +59,7 @@
 			this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
 			this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-			this.countiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.demographicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
 			this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -85,13 +78,13 @@
 			// tabControl1
 			// 
 			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-			| System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Location = new System.Drawing.Point(12, 27);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(354, 296);
+			this.tabControl1.Size = new System.Drawing.Size(354, 311);
 			this.tabControl1.TabIndex = 0;
 			// 
 			// tabPage1
@@ -120,7 +113,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(346, 270);
+			this.tabPage1.Size = new System.Drawing.Size(346, 285);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "County 1";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -137,29 +130,29 @@
 			// numericUpDown8
 			// 
 			this.numericUpDown8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.numericUpDown8.Location = new System.Drawing.Point(53, 259);
 			this.numericUpDown8.Maximum = new decimal(new int[] {
-			1000000000,
-			0,
-			0,
-			0});
+            1000000000,
+            0,
+            0,
+            0});
 			this.numericUpDown8.Name = "numericUpDown8";
-			this.numericUpDown8.Size = new System.Drawing.Size(202, 20);
+			this.numericUpDown8.Size = new System.Drawing.Size(168, 20);
 			this.numericUpDown8.TabIndex = 24;
 			// 
 			// numericUpDown7
 			// 
 			this.numericUpDown7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.numericUpDown7.Location = new System.Drawing.Point(92, 233);
 			this.numericUpDown7.Maximum = new decimal(new int[] {
-			1000000000,
-			0,
-			0,
-			0});
+            1000000000,
+            0,
+            0,
+            0});
 			this.numericUpDown7.Name = "numericUpDown7";
-			this.numericUpDown7.Size = new System.Drawing.Size(163, 20);
+			this.numericUpDown7.Size = new System.Drawing.Size(129, 20);
 			this.numericUpDown7.TabIndex = 22;
 			// 
 			// label12
@@ -183,29 +176,29 @@
 			// numericUpDown6
 			// 
 			this.numericUpDown6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.numericUpDown6.Location = new System.Drawing.Point(91, 207);
 			this.numericUpDown6.Maximum = new decimal(new int[] {
-			10000000,
-			0,
-			0,
-			0});
+            10000000,
+            0,
+            0,
+            0});
 			this.numericUpDown6.Name = "numericUpDown6";
-			this.numericUpDown6.Size = new System.Drawing.Size(164, 20);
+			this.numericUpDown6.Size = new System.Drawing.Size(130, 20);
 			this.numericUpDown6.TabIndex = 19;
 			// 
 			// numericUpDown5
 			// 
 			this.numericUpDown5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.numericUpDown5.Location = new System.Drawing.Point(86, 181);
 			this.numericUpDown5.Maximum = new decimal(new int[] {
-			1000000000,
-			0,
-			0,
-			0});
+            1000000000,
+            0,
+            0,
+            0});
 			this.numericUpDown5.Name = "numericUpDown5";
-			this.numericUpDown5.Size = new System.Drawing.Size(169, 20);
+			this.numericUpDown5.Size = new System.Drawing.Size(135, 20);
 			this.numericUpDown5.TabIndex = 18;
 			// 
 			// label10
@@ -220,15 +213,15 @@
 			// numericUpDown4
 			// 
 			this.numericUpDown4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.numericUpDown4.Location = new System.Drawing.Point(101, 158);
 			this.numericUpDown4.Maximum = new decimal(new int[] {
-			1000000000,
-			0,
-			0,
-			0});
+            1000000000,
+            0,
+            0,
+            0});
 			this.numericUpDown4.Name = "numericUpDown4";
-			this.numericUpDown4.Size = new System.Drawing.Size(154, 20);
+			this.numericUpDown4.Size = new System.Drawing.Size(120, 20);
 			this.numericUpDown4.TabIndex = 16;
 			// 
 			// label9
@@ -252,15 +245,15 @@
 			// numericUpDown3
 			// 
 			this.numericUpDown3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.numericUpDown3.Location = new System.Drawing.Point(140, 134);
 			this.numericUpDown3.Maximum = new decimal(new int[] {
-			1000000000,
-			0,
-			0,
-			0});
+            1000000000,
+            0,
+            0,
+            0});
 			this.numericUpDown3.Name = "numericUpDown3";
-			this.numericUpDown3.Size = new System.Drawing.Size(115, 20);
+			this.numericUpDown3.Size = new System.Drawing.Size(81, 20);
 			this.numericUpDown3.TabIndex = 13;
 			this.numericUpDown3.ThousandsSeparator = true;
 			// 
@@ -276,15 +269,15 @@
 			// numericUpDown2
 			// 
 			this.numericUpDown2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.numericUpDown2.Location = new System.Drawing.Point(88, 108);
 			this.numericUpDown2.Maximum = new decimal(new int[] {
-			1000000000,
-			0,
-			0,
-			0});
+            1000000000,
+            0,
+            0,
+            0});
 			this.numericUpDown2.Name = "numericUpDown2";
-			this.numericUpDown2.Size = new System.Drawing.Size(167, 20);
+			this.numericUpDown2.Size = new System.Drawing.Size(133, 20);
 			this.numericUpDown2.TabIndex = 11;
 			this.numericUpDown2.ThousandsSeparator = true;
 			// 
@@ -300,30 +293,30 @@
 			// numericUpDown1
 			// 
 			this.numericUpDown1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.numericUpDown1.Location = new System.Drawing.Point(130, 82);
 			this.numericUpDown1.Maximum = new decimal(new int[] {
-			1000000000,
-			0,
-			0,
-			0});
+            1000000000,
+            0,
+            0,
+            0});
 			this.numericUpDown1.Name = "numericUpDown1";
-			this.numericUpDown1.Size = new System.Drawing.Size(125, 20);
+			this.numericUpDown1.Size = new System.Drawing.Size(91, 20);
 			this.numericUpDown1.TabIndex = 7;
 			this.numericUpDown1.ThousandsSeparator = true;
 			// 
 			// votingPop
 			// 
 			this.votingPop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.votingPop.Location = new System.Drawing.Point(130, 30);
 			this.votingPop.Maximum = new decimal(new int[] {
-			1000000000,
-			0,
-			0,
-			0});
+            1000000000,
+            0,
+            0,
+            0});
 			this.votingPop.Name = "votingPop";
-			this.votingPop.Size = new System.Drawing.Size(125, 20);
+			this.votingPop.Size = new System.Drawing.Size(91, 20);
 			this.votingPop.TabIndex = 6;
 			this.votingPop.ThousandsSeparator = true;
 			// 
@@ -348,17 +341,17 @@
 			// CountyName
 			// 
 			this.CountyName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.CountyName.Location = new System.Drawing.Point(50, 4);
 			this.CountyName.Name = "CountyName";
-			this.CountyName.Size = new System.Drawing.Size(205, 20);
+			this.CountyName.Size = new System.Drawing.Size(171, 20);
 			this.CountyName.TabIndex = 0;
 			this.CountyName.Text = "County 1";
 			// 
 			// finishButton
 			// 
 			this.finishButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.finishButton.Location = new System.Drawing.Point(290, 332);
+			this.finishButton.Location = new System.Drawing.Point(290, 347);
 			this.finishButton.Name = "finishButton";
 			this.finishButton.Size = new System.Drawing.Size(75, 23);
 			this.finishButton.TabIndex = 1;
@@ -369,39 +362,41 @@
 			// newButton
 			// 
 			this.newButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.newButton.Location = new System.Drawing.Point(209, 332);
+			this.newButton.Location = new System.Drawing.Point(209, 347);
 			this.newButton.Name = "newButton";
 			this.newButton.Size = new System.Drawing.Size(75, 23);
 			this.newButton.TabIndex = 2;
 			this.newButton.Text = "Add County";
 			this.newButton.UseVisualStyleBackColor = true;
+			this.newButton.Click += new System.EventHandler(this.newButton_Click);
 			// 
 			// deleteButton
 			// 
 			this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.deleteButton.Location = new System.Drawing.Point(106, 332);
+			this.deleteButton.Location = new System.Drawing.Point(106, 347);
 			this.deleteButton.Name = "deleteButton";
 			this.deleteButton.Size = new System.Drawing.Size(97, 23);
 			this.deleteButton.TabIndex = 3;
 			this.deleteButton.Text = "Delete County";
 			this.deleteButton.UseVisualStyleBackColor = true;
+			this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
 			// 
 			// demoButton
 			// 
 			this.demoButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.demoButton.Location = new System.Drawing.Point(11, 332);
+			this.demoButton.Location = new System.Drawing.Point(11, 347);
 			this.demoButton.Name = "demoButton";
 			this.demoButton.Size = new System.Drawing.Size(89, 23);
 			this.demoButton.TabIndex = 4;
 			this.demoButton.Text = "Demographics";
 			this.demoButton.UseVisualStyleBackColor = true;
+			this.demoButton.Click += new System.EventHandler(this.demoButton_Click);
 			// 
 			// menuStrip1
 			// 
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.fileToolStripMenuItem,
-			this.editToolStripMenuItem,
-			this.aboutToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.aboutToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(378, 24);
@@ -411,9 +406,9 @@
 			// fileToolStripMenuItem
 			// 
 			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.newToolStripMenuItem,
-			this.toolStripMenuItem4,
-			this.saveToolStripMenuItem});
+            this.newToolStripMenuItem,
+            this.toolStripMenuItem4,
+            this.saveToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
 			this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
 			this.fileToolStripMenuItem.Text = "File";
@@ -437,60 +432,13 @@
 			this.saveToolStripMenuItem.Text = "Save";
 			this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
 			// 
-			// editToolStripMenuItem
-			// 
-			this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.preferencesToolStripMenuItem,
-			this.toolStripMenuItem2,
-			this.countiesToolStripMenuItem,
-			this.demographicsToolStripMenuItem});
-			this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-			this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-			this.editToolStripMenuItem.Text = "Edit";
-			// 
-			// preferencesToolStripMenuItem
-			// 
-			this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-			this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.preferencesToolStripMenuItem.Text = "Preferences";
-			// 
-			// toolStripMenuItem2
-			// 
-			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-			this.toolStripMenuItem2.Size = new System.Drawing.Size(149, 6);
-			// 
-			// countiesToolStripMenuItem
-			// 
-			this.countiesToolStripMenuItem.Name = "countiesToolStripMenuItem";
-			this.countiesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.countiesToolStripMenuItem.Text = "Counties";
-			// 
-			// demographicsToolStripMenuItem
-			// 
-			this.demographicsToolStripMenuItem.Name = "demographicsToolStripMenuItem";
-			this.demographicsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.demographicsToolStripMenuItem.Text = "Demographics";
-			// 
 			// aboutToolStripMenuItem
 			// 
 			this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.helpToolStripMenuItem,
-			this.toolStripMenuItem3,
-			this.aboutToolStripMenuItem1});
+            this.aboutToolStripMenuItem1});
 			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
 			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
 			this.aboutToolStripMenuItem.Text = "About";
-			// 
-			// helpToolStripMenuItem
-			// 
-			this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-			this.helpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.helpToolStripMenuItem.Text = "Help";
-			// 
-			// toolStripMenuItem3
-			// 
-			this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-			this.toolStripMenuItem3.Size = new System.Drawing.Size(149, 6);
 			// 
 			// aboutToolStripMenuItem1
 			// 
@@ -504,7 +452,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
-			this.ClientSize = new System.Drawing.Size(378, 364);
+			this.ClientSize = new System.Drawing.Size(378, 379);
 			this.Controls.Add(this.demoButton);
 			this.Controls.Add(this.deleteButton);
 			this.Controls.Add(this.newButton);
@@ -512,7 +460,7 @@
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.menuStrip1);
 			this.MainMenuStrip = this.menuStrip1;
-			this.MinimumSize = new System.Drawing.Size(394, 403);
+			this.MinimumSize = new System.Drawing.Size(394, 418);
 			this.Name = "MainControl";
 			this.Text = "Anti-Gerry Mapping";
 			this.tabControl1.ResumeLayout(false);
@@ -567,14 +515,7 @@
 		private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
 		private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
-		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-		private System.Windows.Forms.ToolStripMenuItem countiesToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem demographicsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
 		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem1;
 	}
 }
