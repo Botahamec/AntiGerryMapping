@@ -66,9 +66,10 @@ namespace AntiGerryMapping {
 			//set up save
 			List<county> counties = new List<county>();
 			List<string> demographics = new List<string>();
+			int Districts = file.Districts;
 			foreach (county County in file.Counties) { counties.Add(new county(County.name, County.borders, County.population, County.demo)); }
 			foreach (string Dem in file.Demographics) { demographics.Add(Dem); }
-			saveFile = new SaveFile(counties.ToArray(), demographics.ToArray()); //allows for editing save
+			saveFile = new SaveFile(counties.ToArray(), demographics.ToArray(), Districts); //allows for editing save
 
 			//initiation
 			InitializeComponent();

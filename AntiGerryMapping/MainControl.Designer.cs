@@ -61,6 +61,8 @@
 			this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+			this.label2 = new System.Windows.Forms.Label();
+			this.districtsBox = new System.Windows.Forms.NumericUpDown();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
@@ -73,6 +75,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.votingPop)).BeginInit();
 			this.menuStrip1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.districtsBox)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabControl1
@@ -81,10 +84,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tabControl1.Controls.Add(this.tabPage1);
-			this.tabControl1.Location = new System.Drawing.Point(12, 27);
+			this.tabControl1.Location = new System.Drawing.Point(12, 54);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(354, 311);
+			this.tabControl1.Size = new System.Drawing.Size(354, 284);
 			this.tabControl1.TabIndex = 0;
 			// 
 			// tabPage1
@@ -113,7 +116,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(346, 285);
+			this.tabPage1.Size = new System.Drawing.Size(346, 258);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "County 1";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -138,7 +141,7 @@
             0,
             0});
 			this.numericUpDown8.Name = "numericUpDown8";
-			this.numericUpDown8.Size = new System.Drawing.Size(168, 20);
+			this.numericUpDown8.Size = new System.Drawing.Size(134, 20);
 			this.numericUpDown8.TabIndex = 24;
 			// 
 			// numericUpDown7
@@ -152,7 +155,7 @@
             0,
             0});
 			this.numericUpDown7.Name = "numericUpDown7";
-			this.numericUpDown7.Size = new System.Drawing.Size(129, 20);
+			this.numericUpDown7.Size = new System.Drawing.Size(95, 20);
 			this.numericUpDown7.TabIndex = 22;
 			// 
 			// label12
@@ -184,7 +187,7 @@
             0,
             0});
 			this.numericUpDown6.Name = "numericUpDown6";
-			this.numericUpDown6.Size = new System.Drawing.Size(130, 20);
+			this.numericUpDown6.Size = new System.Drawing.Size(96, 20);
 			this.numericUpDown6.TabIndex = 19;
 			// 
 			// numericUpDown5
@@ -198,7 +201,7 @@
             0,
             0});
 			this.numericUpDown5.Name = "numericUpDown5";
-			this.numericUpDown5.Size = new System.Drawing.Size(135, 20);
+			this.numericUpDown5.Size = new System.Drawing.Size(101, 20);
 			this.numericUpDown5.TabIndex = 18;
 			// 
 			// label10
@@ -221,7 +224,7 @@
             0,
             0});
 			this.numericUpDown4.Name = "numericUpDown4";
-			this.numericUpDown4.Size = new System.Drawing.Size(120, 20);
+			this.numericUpDown4.Size = new System.Drawing.Size(86, 20);
 			this.numericUpDown4.TabIndex = 16;
 			// 
 			// label9
@@ -253,7 +256,7 @@
             0,
             0});
 			this.numericUpDown3.Name = "numericUpDown3";
-			this.numericUpDown3.Size = new System.Drawing.Size(81, 20);
+			this.numericUpDown3.Size = new System.Drawing.Size(47, 20);
 			this.numericUpDown3.TabIndex = 13;
 			this.numericUpDown3.ThousandsSeparator = true;
 			// 
@@ -277,7 +280,7 @@
             0,
             0});
 			this.numericUpDown2.Name = "numericUpDown2";
-			this.numericUpDown2.Size = new System.Drawing.Size(133, 20);
+			this.numericUpDown2.Size = new System.Drawing.Size(99, 20);
 			this.numericUpDown2.TabIndex = 11;
 			this.numericUpDown2.ThousandsSeparator = true;
 			// 
@@ -301,7 +304,7 @@
             0,
             0});
 			this.numericUpDown1.Name = "numericUpDown1";
-			this.numericUpDown1.Size = new System.Drawing.Size(91, 20);
+			this.numericUpDown1.Size = new System.Drawing.Size(57, 20);
 			this.numericUpDown1.TabIndex = 7;
 			this.numericUpDown1.ThousandsSeparator = true;
 			// 
@@ -316,7 +319,7 @@
             0,
             0});
 			this.votingPop.Name = "votingPop";
-			this.votingPop.Size = new System.Drawing.Size(91, 20);
+			this.votingPop.Size = new System.Drawing.Size(57, 20);
 			this.votingPop.TabIndex = 6;
 			this.votingPop.ThousandsSeparator = true;
 			// 
@@ -344,7 +347,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.CountyName.Location = new System.Drawing.Point(50, 4);
 			this.CountyName.Name = "CountyName";
-			this.CountyName.Size = new System.Drawing.Size(171, 20);
+			this.CountyName.Size = new System.Drawing.Size(137, 20);
 			this.CountyName.TabIndex = 0;
 			this.CountyName.Text = "County 1";
 			// 
@@ -416,19 +419,19 @@
 			// newToolStripMenuItem
 			// 
 			this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-			this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.newToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
 			this.newToolStripMenuItem.Text = "New";
 			this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem4
 			// 
 			this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-			this.toolStripMenuItem4.Size = new System.Drawing.Size(149, 6);
+			this.toolStripMenuItem4.Size = new System.Drawing.Size(95, 6);
 			// 
 			// saveToolStripMenuItem
 			// 
 			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-			this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.saveToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
 			this.saveToolStripMenuItem.Text = "Save";
 			this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
 			// 
@@ -443,9 +446,38 @@
 			// aboutToolStripMenuItem1
 			// 
 			this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-			this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+			this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
 			this.aboutToolStripMenuItem1.Text = "About";
 			this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(13, 31);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(41, 13);
+			this.label2.TabIndex = 6;
+			this.label2.Text = "Disticts";
+			// 
+			// districtsBox
+			// 
+			this.districtsBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.districtsBox.Location = new System.Drawing.Point(61, 28);
+			this.districtsBox.Maximum = new decimal(new int[] {
+            256,
+            0,
+            0,
+            0});
+			this.districtsBox.Name = "districtsBox";
+			this.districtsBox.Size = new System.Drawing.Size(305, 20);
+			this.districtsBox.TabIndex = 7;
+			this.districtsBox.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.districtsBox.ValueChanged += new System.EventHandler(this.districtsBox_ValueChanged);
 			// 
 			// MainControl
 			// 
@@ -453,6 +485,8 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
 			this.ClientSize = new System.Drawing.Size(378, 379);
+			this.Controls.Add(this.districtsBox);
+			this.Controls.Add(this.label2);
 			this.Controls.Add(this.demoButton);
 			this.Controls.Add(this.deleteButton);
 			this.Controls.Add(this.newButton);
@@ -477,6 +511,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.votingPop)).EndInit();
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.districtsBox)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -517,5 +552,7 @@
 		private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem1;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.NumericUpDown districtsBox;
 	}
 }

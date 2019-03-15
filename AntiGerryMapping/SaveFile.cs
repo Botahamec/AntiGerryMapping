@@ -14,13 +14,15 @@ namespace AntiGerryMapping {
 		//PROPERTIES
 		public county[] Counties { get; set; }
 		public string[] Demographics { get; set; }
+		public int Districts { get; set; }
 
 		//CONSTRUCTORS -------------------------------------------------------
 
 		//constructor - from arrays
-		public SaveFile(county[] counties, string[] demographics) {
+		public SaveFile(county[] counties, string[] demographics, int districts) {
 			Counties = counties;
 			Demographics = demographics;
+			Districts = districts;
 		}
 
 		//constructor - from json
@@ -39,6 +41,7 @@ namespace AntiGerryMapping {
 			SaveFile save = JsonConvert.DeserializeObject<SaveFile>(json);
 			Counties = save.Counties;
 			Demographics = save.Demographics;
+			Districts = save.Districts;
 		}
 
 		//FUNCTIONS --------------------------------------------------------

@@ -149,6 +149,8 @@ namespace AntiGerryMapping {
 				)};
 			}
 
+			districtsBox.Value = save.Districts; //sets the number of districts
+
 			//creates a new tab for each county
 			for (int i = 0; i < save.Counties.Length; ++i) {
 				InitiateCounty(save.Counties[i]);
@@ -189,6 +191,11 @@ namespace AntiGerryMapping {
 			save.Counties[tabControl1.SelectedIndex].demo[Int32.Parse(box.Name)] = (int)Math.Round(box.Value);
 		}
 
+		private void districtsBox_ValueChanged(object sender, EventArgs e) {
+			NumericUpDown box = (NumericUpDown)sender;
+			save.Districts = (int)Math.Round(box.Value);
+		}
+
 		//activates after clicking "New"
 		private void newToolStripMenuItem_Click(object sender, EventArgs e) {
 			DeleteAllTabs(); //clears out the app
@@ -208,11 +215,11 @@ namespace AntiGerryMapping {
 		//adds a new county to the project (with button)
 		private void newButton_Click(object sender, EventArgs e) {
 			List<county> newList = save.Counties.ToList(); //new list
-			int newIndex = save.Counties.Length + 1; //index of new county
+			int newIndex = save.Counties.Length; //index of new county
 			List<int> demoList = new List<int>();
 			foreach (string dem in save.Demographics) { demoList.Add(0); } //creates list of demographics
 			county newCounty = new county( //creates new county
-				"County " + newIndex,
+				"County " + (newIndex + 1),
 				new string[] { },
 				0,
 				demoList.ToArray()
@@ -232,13 +239,16 @@ namespace AntiGerryMapping {
 
 		//opens demographic GUI (with button)
 		private void demoButton_Click(object sender, EventArgs e) {
-			save.Save();
 			DemographicsWindow demoBox = new DemographicsWindow(this, save);
 			demoBox.Show();
 		}
 
 		//runs after pressing Finish
 		private void finishButton_Click(object sender, EventArgs e) {
+			if (save.Districts == 0) {
+				MessageBox.Show("The number of districts cannot be zero");
+				return;
+			}
 			MessageBox.Show(save.ToJson());
 		}
 	}
