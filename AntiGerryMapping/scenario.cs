@@ -8,13 +8,12 @@ namespace AntiGerryMapping {
 
 	class scenario {
 
+		public district[] Districts { get; set; }
+
 		//constructor
 		public scenario(district[] districts) {
-			district[] Districts = districts;
+			Districts = districts;
 		}
-
-		//properties
-		district[] Districts {get; set;}
 
 	}
 

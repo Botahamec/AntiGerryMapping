@@ -19,6 +19,7 @@ namespace AntiGerryMapping {
 
 		//defines variables
 		SaveFile save;
+		int SelectedTab;
 
 		//A demographic entry
 		class NumEntry {
@@ -44,9 +45,10 @@ namespace AntiGerryMapping {
 				box = new NumericUpDown {
 					Anchor = ((AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right)),
 					Location = new Point(143, yloc),
-					Size = new Size(50, 20),
+					Size = new Size(200, 20),
 					Maximum = int.MaxValue,
 					Value = value,
+					ThousandsSeparator = true,
 					Name = ((yloc - 82) / 24).ToString()
 				};
 			}
@@ -62,14 +64,47 @@ namespace AntiGerryMapping {
 			tab.Controls.Add(entry.box); //adds numericUpDown
 		}
 
-		//sets up a county tab
-		private void InitiateCounty(county County) {
+		//adds checkbox for each county that could be a border
+		private void InitiateBorders(string county, string[] borders, int yloc, TabPage tab) {
+			int index = 0;
+			foreach (county County in save.Counties) {
+				string name = County.name;
+				if (name == county) {break;}
+				index++;
+			}
+			Debug.WriteLine(index);
+			int num = 0;
+			foreach (county County in save.Counties) {
+				string name = County.name;
+				if (name == county) { num++; continue; }
+				CheckState check = new CheckState();
+				if (borders.Contains(name)) { check = CheckState.Checked; }
+				else {check = CheckState.Unchecked;}
+				if (save.Counties[num].borders.Contains(county)) {
+					check = CheckState.Checked;
+					if (!borders.Contains(save.Counties[num].name)) {
+						List<string> list = borders.ToList();
+						list.Add(save.Counties[num].name);
+						save.Counties[index].borders = list.ToArray();
+					}
+				}
+				CheckBox box = new CheckBox {
+					Text = name,
+					CheckState = check,
+					Location = new Point(6, yloc),
+					Name = num.ToString()
+				};
+				box.CheckStateChanged += new EventHandler(borderChange);
+				tab.Controls.Add(box);
+				yloc += 24;
+				num++;
+			}
+			GC.Collect();
+		}
 
-			//adds name label
-			TabPage newTab = new TabPage {
-				Text = County.name,
-				AutoScroll = true
-			};
+		//sets up a county tab
+		private void InitiateCounty(county County, TabPage newTab) {
+
 			Label nameLabel = new Label {
 				Text = "Name",
 				AutoSize = true,
@@ -79,7 +114,7 @@ namespace AntiGerryMapping {
 				Text = County.name,
 				Anchor = ((AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right)),
 				Location = new Point(143, 4),
-				Size = new Size(50, 20),
+				Size = new Size(200, 20),
 				Name = "nameBox"
 			};
 			nameBox.TextChanged += new EventHandler(nameBoxTextChange);
@@ -100,7 +135,22 @@ namespace AntiGerryMapping {
 				yloc += 24; //increases y value for next entry
 			}
 
-			tabControl1.TabPages.Add(newTab); //adds tab to app
+			//sets up borders label
+			yloc += 24;
+			Label bordersLabel = new Label {
+				Text = "Borders:",
+				AutoSize = true,
+				Location = new Point(6, yloc)
+			};
+			newTab.Controls.Add(bordersLabel);
+			yloc += 24;
+			InitiateBorders(County.name, County.borders, yloc, newTab);
+		}
+
+		private void EmptyTab(TabPage tab) {
+			for (int i = 0; i < tab.Controls.Count; i++) {
+				tab.Controls.RemoveAt(0);
+			}
 		}
 
 		//resets demographic information
@@ -120,10 +170,17 @@ namespace AntiGerryMapping {
 			}
 		}
 
+		//creates tab for a page
+		private void InitiateTab(string name) {
+			TabPage newTab = new TabPage {
+				Text = name,
+				AutoScroll = true
+			};
+			tabControl1.TabPages.Add(newTab);
+		}
+
 		//initializes the app to have all of the counties and demographics required
 		private void InitializeApp() {
-
-			tabControl1.TabPages.Remove(tabPage1); //removes first page
 
 			//default demographics and counties
 			if (save.Demographics == null || save.Demographics.Length == 0) {
@@ -153,8 +210,11 @@ namespace AntiGerryMapping {
 
 			//creates a new tab for each county
 			for (int i = 0; i < save.Counties.Length; ++i) {
-				InitiateCounty(save.Counties[i]);
-			} 
+				InitiateTab(save.Counties[i].name);
+			}
+			InitiateCounty(save.Counties[0], tabControl1.TabPages[0]);
+
+			tabControl1.SelectedIndexChanged += new EventHandler(tabChanged);
 
 		}
 
@@ -162,6 +222,7 @@ namespace AntiGerryMapping {
 		public MainControl() {
 			LoadCounties(); //loads from counties.json
 			InitializeComponent(); //initializes app
+			tabControl1.TabPages.Remove(tabPage1); //removes first page
 			InitializeApp(); //creates tabs
 		}
 
@@ -191,9 +252,35 @@ namespace AntiGerryMapping {
 			save.Counties[tabControl1.SelectedIndex].demo[Int32.Parse(box.Name)] = (int)Math.Round(box.Value);
 		}
 
+		//runs when the number of districts changes
 		private void districtsBox_ValueChanged(object sender, EventArgs e) {
 			NumericUpDown box = (NumericUpDown)sender;
 			save.Districts = (int)Math.Round(box.Value);
+		}
+
+		//runs when a checkbox is toggled in the borders section
+		private void borderChange(object sender, EventArgs e) {
+			CheckBox box = (CheckBox)sender;
+			if (box.Checked) {
+				List<string> borders = save.Counties[tabControl1.SelectedIndex].borders.ToList();
+				borders.Add(box.Text);
+				save.Counties[tabControl1.SelectedIndex].borders = borders.ToArray();
+			}
+			else {
+				List<string> borders = save.Counties[tabControl1.SelectedIndex].borders.ToList();
+				borders.Remove(box.Text);
+				save.Counties[tabControl1.SelectedIndex].borders = borders.ToArray();
+				/*borders = save.Counties[int.Parse(box.Name)].borders.ToList();
+				borders.Remove(box.Text);
+				save.Counties[int.Parse(box.Name)].borders = borders.ToArray();*/
+			}
+		}
+
+		//runs when the selected tab changes
+		private void tabChanged(object sender, EventArgs e) {
+			EmptyTab(tabControl1.TabPages[SelectedTab]);
+			SelectedTab = tabControl1.SelectedIndex;
+			InitiateCounty(save.Counties[SelectedTab], tabControl1.TabPages[SelectedTab]);
 		}
 
 		//activates after clicking "New"
@@ -226,15 +313,17 @@ namespace AntiGerryMapping {
 			);
 			newList.Add(newCounty); //adds county to list
 			save.Counties = newList.ToArray(); //converts list to array
-			InitiateCounty(save.Counties[newIndex]);
+			InitiateTab(newCounty.name);
 		}
 
 		//deletes the current county (with button)
 		private void deleteButton_Click(object sender, EventArgs e) {
+			if (tabControl1.TabPages.Count == 0) { return; } //prevents an error if there are no pages
 			List<county> newList = save.Counties.ToList(); //new list
 			newList.RemoveAt(tabControl1.SelectedIndex); //removes county from list
 			save.Counties = newList.ToArray(); //converts list to array
-			tabControl1.TabPages.RemoveAt(tabControl1.SelectedIndex); //removes tab
+			DeleteAllTabs(); //resets everything so borders will be up to date
+			InitializeApp();
 		}
 
 		//opens demographic GUI (with button)
@@ -245,11 +334,41 @@ namespace AntiGerryMapping {
 
 		//runs after pressing Finish
 		private void finishButton_Click(object sender, EventArgs e) {
+
+			//tells the user the number of districts cannot be zero
+			//this is to avoid a divide by zero error
 			if (save.Districts == 0) {
 				MessageBox.Show("The number of districts cannot be zero");
 				return;
 			}
-			MessageBox.Show(save.ToJson());
+
+			foreach (county County in save.Counties) {
+
+				//tells the user that the population cannot be zero
+				if (County.population == 0) {
+					MessageBox.Show("The population of " + County.name + "cannot be zero");
+					return;
+				}
+
+				//tells the user that a demographic cannot be larger than the population
+				for (int i = 0; i < save.Demographics.Length; i++) {
+					if (County.demo[i] > County.population) {
+						MessageBox.Show("Demographic " + save.Demographics[i] + " cannot be greater than the population in " + County.name);
+						return;
+					}
+				}
+
+				//tells the user that every county must border at least one other county
+				if (County.borders == null || County.borders.Length == 0) {
+					MessageBox.Show(County.name + " must have at least one border");
+					return;
+				}
+			}
+
+			//switches to algorithm window
+			Algorithm nextWindow = new Algorithm(save);
+			nextWindow.Show();
+			Close();
 		}
 	}
 }

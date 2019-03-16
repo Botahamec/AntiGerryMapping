@@ -16,7 +16,12 @@ namespace AntiGerryMapping
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new MainControl());
+
+			//starts the initial window
+			MainControl GUI = new MainControl();
+			GUI.Show();
+
+			Application.Run(); //runs the application
 		}
 	}
 }
