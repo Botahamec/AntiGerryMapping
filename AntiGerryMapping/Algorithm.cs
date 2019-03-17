@@ -14,6 +14,8 @@ namespace AntiGerryMapping {
 
 	public partial class Algorithm : Form {
 
+		SaveFile save;
+
 		//a step for Popper to change
 		class step {
 
@@ -50,33 +52,69 @@ namespace AntiGerryMapping {
 			//creates a list of counties from save
 			county[] InitializeCountyArray() {
 				List<county> countyl = new List<county>();
-				foreach (county curent in save.Counties) { countyl.Add(new county(curent.name, curent.borders, curent.population, curent.demo)); }
+				foreach (county curent in save.Counties) {
+					countyl.Add(new county(curent.name, curent.borders, curent.population, curent.demo));
+				}
 				return countyl.OrderBy(o=>o.population).ToArray();
 			}
 
 			//creates a new scenario
 			scenario CreateScenario(step[] changes) {
 
-
-				List<district> Districts = new List<district>(); //list of districts
-				for (int i = 1; i <= DISTRICTS; i++) { //sets up list
+				//set up list of districts
+				List<district> Districts = new List<district>();
+				for (int i = 1; i <= DISTRICTS; i++) {
 					Districts.Add(new district(i, new county[] { }));
 				}
-				Debug.Write(JsonConvert.SerializeObject(Districts));
+
+				//sets up new independent list of counties
+				List<county> origCounties = new List<county>();
+				foreach (county County in counties) {
+					origCounties.Add(new county(County.name, County.borders, County.population, County.demo));
+				}
 
 				//loops for each county
-				for (int i = counties.Length - 1; i >= 0; i--) {
+				for (int z = 1; z <= origCounties.Count; z++) {
 
-					county County = counties[i]; //county to  be placed
+					Debug.WriteLine("z=" + z);
+
+					int i = origCounties.Count - z;
+					county County = origCounties[i]; //county to  be placed
 					Districts = Districts.OrderBy(o => o.Population()).ToList(); //orders the list
 					district finalDistrict = new district(0, new county[] { });
+					int a; //incrementor
 
 					//looks for smallest district that borders the county
-					for (int a = 0; (a < DISTRICTS - 1) && (finalDistrict.Number == 0); a++) {
+					for (a = 0; (a < DISTRICTS - 1) && (finalDistrict.Number == 0); a++) {
+
 
 						//automatically accepts empty districts
-						if (Districts[a].Counties == null) {
+						if (Districts[a].Counties == null || Districts[a].Counties.Length == 0) {
 							finalDistrict = Districts[a];
+
+							//puts step into stepstaken
+							int secPop = 0; //second least populated viable district
+							for (a++; a < DISTRICTS - 1; a++) { //finds second closest district
+
+								//automatically accepts empty districts
+								if (Districts[a].Counties == null) {
+									secPop = Districts[a].Population();
+									break;
+								}
+
+								//checks if the district borders the district
+								foreach (county check in Districts[a].Counties) {
+									if (County.borders.Contains(check.name)) {
+										secPop = Districts[a].Population();
+										break;
+									}
+								}
+							}
+							int difference = Math.Abs(secPop - finalDistrict.Population()); //calculates difference
+							step thisStep = new step(County, finalDistrict, difference);
+							if (changes.Contains(thisStep)) { continue; } //skips if this step is the one to avoid
+							stepstaken.Add(thisStep); //adds step to list
+
 							break;
 						}
 
@@ -84,9 +122,45 @@ namespace AntiGerryMapping {
 						foreach (county check in Districts[a].Counties) {
 							if (County.borders.Contains(check.name)) {
 								finalDistrict = Districts[a];
+
+								//puts step into stepstaken
+								int secPop = 0; //second least populated viable district
+								for (a++; a < DISTRICTS - 1; a++) { //finds second closest district
+
+									//automatically accepts empty districts
+									if (Districts[a].Counties == null) {
+										secPop = Districts[a].Population();
+										break;
+									}
+
+									//checks if the district borders the district
+									foreach (county test in Districts[a].Counties) {
+										if (County.borders.Contains(test.name)) {
+											secPop = Districts[a].Population();
+											break;
+										}
+									}
+								}
+								int difference = Math.Abs(secPop - finalDistrict.Population()); //calculates difference
+								step thisStep = new step(County, finalDistrict, difference);
+								if (changes.Contains(thisStep)) { continue; }
+								stepstaken.Add(thisStep); //adds step to list
+
 								break;
 							}
 						}
+					}
+
+					//prevent loop from taking too long
+					if (z > counties.Length * 12) {
+						Debug.Write("didn't work");
+						return new scenario(new district[] { });						
+					}
+
+					//runs if there is no viable district
+					if (finalDistrict.Number == 0) {
+						origCounties.Insert(0, County); //saves county for later
+						continue; //tries next county
 					}
 
 					//puts the county into the district
@@ -100,7 +174,7 @@ namespace AntiGerryMapping {
 					Districts.Add(finalDistrict); //puts the new district in the list of districts
 				}
 
-				return new scenario(Districts.OrderBy(o=>o.Counties.Length).ToArray());
+				return new scenario(Districts.OrderBy(o=>o.Population()).ToArray());
 
 			}
 
@@ -111,46 +185,48 @@ namespace AntiGerryMapping {
 				if (maxPop > FACTOR * minPop) { //checks if the districts are too far apart
 					return false; //is false if they are
 				}
-				progressBar1.Value = (int)Math.Round(maxPop / minPop / FACTOR * 100); //sets the progress bar
+				progressBar1.Value = (int)Math.Round(maxPop / minPop / FACTOR * 100); //sets the progress bar;
 				return true; //returns true if they aren't
 			}
 
 			//ALGORITHM ----------------------------------------------------------------------------
 
 			label1.Text = "Generating Scenarios..."; //tells the user that Popper is running
+			Refresh();
 
 			scenarios.Add(CreateScenario(new step[] { })); //first scenario
 
-			//generates scenarios
-			int s = 0;
+			//second round
+			int s = 0; //incrementer
 			int e = stepstaken.Count();
 			stepstaken = stepstaken.OrderBy(o => o.Difference).ToList();
-			//do {
-				scenarios.Add(CreateScenario(new step[] {  }));
-				s++;
-				foreach (district District in scenarios.Last().Districts) {
-					Debug.WriteLine(District.Population());
-					Debug.WriteLine(District.Counties.Length);
-				}
-				Debug.WriteLine("-----------------------------------------");
-			//} while (CheckScenario(scenarios.Last()) && s < e);
+			while (CheckScenario(scenarios.Last()) && s < e) {
 
+				//new scenariio
+				scenario Scenario = CreateScenario(new step[] { stepstaken[s] });
+				//prevents duplicate scenarios and 
+				if (!scenarios.Contains(Scenario) && Scenario != new scenario(new district[] { })) {
+					scenarios.Add(Scenario);
+				}
+
+				s++;//increments
+			}
 
 			return scenarios.ToArray(); //final return value
 		}
 
-		//runs the algorithms
-		private void Run(SaveFile save) {
+		//initializes algorithm
+		public Algorithm(SaveFile Save) {
+			InitializeComponent(); //initializes window
+			save = Save;
+		}
+
+		private void Algorithm_Shown(object sender, EventArgs e) {
 			label1.Text = "Initializing..."; //tells user the stuff is setting up
+			Refresh();
 			scenario[] scenarios = Popper(save); //runs Popper algorithm
 			string json = JsonConvert.SerializeObject(scenarios);
 			Debug.WriteLine(json);
-		}
-
-		//initializes algorithm
-		public Algorithm(SaveFile save) {
-			InitializeComponent(); //initializes window
-			Run(save);
 		}
 	}
 }

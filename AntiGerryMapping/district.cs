@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace AntiGerryMapping {
 
@@ -14,8 +15,8 @@ namespace AntiGerryMapping {
 
 		//constructor
 		public district(int number, county[] counties) {
-			int Number = number;
-			county[] Counties = counties;
+			Number = number;
+			Counties = counties;
 		}
 
 		//gets the population of the district

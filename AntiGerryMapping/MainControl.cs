@@ -72,7 +72,6 @@ namespace AntiGerryMapping {
 				if (name == county) {break;}
 				index++;
 			}
-			Debug.WriteLine(index);
 			int num = 0;
 			foreach (county County in save.Counties) {
 				string name = County.name;
@@ -278,6 +277,7 @@ namespace AntiGerryMapping {
 
 		//runs when the selected tab changes
 		private void tabChanged(object sender, EventArgs e) {
+			tabControl1.TabPages[SelectedTab].VerticalScroll.Value = 0;
 			EmptyTab(tabControl1.TabPages[SelectedTab]);
 			SelectedTab = tabControl1.SelectedIndex;
 			InitiateCounty(save.Counties[SelectedTab], tabControl1.TabPages[SelectedTab]);
