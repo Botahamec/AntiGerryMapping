@@ -14,6 +14,12 @@ namespace AntiGerryMapping {
 
 	public partial class Algorithm : Form {
 
+		//----------------------------------------------------------------------------
+		//
+		//                         VARIABLES AND CLASSES
+		//
+		//------------------------------------------------------------------------
+
 		SaveFile save;
 
 		//a step for Popper to change
@@ -31,9 +37,44 @@ namespace AntiGerryMapping {
 			}
 		}
 
+		class state {
+
+			//properties
+			public int Pop { get; set; }
+			public int[] Demo { get; set; }
+
+			//constructor
+			public state(SaveFile Save) {
+
+				//initializes variables
+				int pop = 0;
+				List<int> demo = new List<int>();				
+				foreach (string dem in Save.Demographics) {demo.Add(0);} //initializes demo list
+
+				//calculates values
+				foreach (county County in Save.Counties) {
+					pop += County.population; //adds population
+					for (int i = 0; i < County.demo.Length; i++) { //adds demographics
+						demo[i] += County.demo[i];
+					}
+				}
+
+				//sets properties
+				Pop = pop;
+				Demo = demo.ToArray();
+			}
+		}
+
+		//----------------------------------------------------------------------------
+		//
+		//                                 ALGORITHMS
+		//
+		//----------------------------------------------------------------------------
+
 		//POPPER ---------------------------------------------------------------------------------------------
 		//Popper is an algorithm which creates scenarios where the populations of districts are kind of similar
-		//it does this by putting the counties into the least populous districts
+		//it does this by putting the counties into the least populous districts that have borders
+		//if it's impossible for a certain county, then that county will be saved for later
 		//it records the steps along the way
 		//it will change the least effective steps until there's a scenario 
 		//where the extreme districts are apart by a factor of 1.5
@@ -202,7 +243,7 @@ namespace AntiGerryMapping {
 			stepstaken = stepstaken.OrderBy(o => o.Difference).ToList();
 			while (CheckScenario(scenarios.Last()) && s < e) {
 
-				//new scenariio
+				//new scenario
 				scenario Scenario = CreateScenario(new step[] { stepstaken[s] });
 				//prevents duplicate scenarios and 
 				if (!scenarios.Contains(Scenario) && Scenario != new scenario(new district[] { })) {
@@ -215,17 +256,91 @@ namespace AntiGerryMapping {
 			return scenarios.ToArray(); //final return value
 		}
 
+		//ASCA -----------------------------------------------------------------------
+		//this algorithm finds the most proportional scenario compared to the state
+		//it calculates first what the demographic percentage is for the state
+		//compares it to the percentage based on the districts of the scenario
+		//repeats for each demographic
+		//the percent delta between the state and the scenario is its score
+		//whichever scenario has the highest score is the best scenario
+		private scenario Asca(scenario[] scenarios) {
+			
+			//VARIABLES ---------------------------------------
+
+			state State = new state(save); //state information
+			int P = State.Pop; //total population of the state
+			int t = save.Demographics.Length; //total number of districts
+			List<int> Scores = new List<int>();//list of scores
+
+			//ALGORITHM -------------------------------------------
+
+			label1.Text = "Finding Best Scenario..."; //tells the user what's going on
+			Refresh();
+
+			//calculates score of each 
+			foreach (scenario Scenario in scenarios) {
+
+				int score = 0; //score of the scenario
+
+				//calculates an error for each demographic
+				for (int i = 0; i < save.Demographics.Length; i++) {
+
+					//variables
+					int D = State.Demo[i]; //population of a demographic
+					int d = 0; //number of districts where a demogrpahic is the majority
+
+					//calculate number of districts where a demogrpahic is the majority
+					foreach (district District in Scenario.Districts) {
+						int pop = 0; //number of people in the demographic
+						foreach (county County in District.Counties) {
+							pop += County.demo[i]; //adds demographic from each county to pop
+						}
+						if (pop >= District.Population() / 2) //checks if demo is the majority
+							{ d++; } //adds one if it is
+					}
+
+					//calculates error
+					int error = Math.Abs((D / P) - (d / t));
+					score += error; //adds error to score
+				}
+
+				Scores.Add(score); //adds the score the the list
+			}
+
+			//finds lowest score
+			int index = 0; //index of the lowest score, default scenario is first one generated
+			int lowScore = int.MaxValue; //lowest score
+			for (int i = 0; i < scenarios.Length; i++) {
+				//sets new index if it finds a lower score
+				if (Scores[i] < lowScore) {
+					lowScore = Scores[i];
+					index = i;
+				}
+			}
+			return scenarios[index]; //DONE! :))))
+		}
+
+		//------------------------------------------------------------------------
+		//
+		//                              INITIATION
+		//
+		//-----------------------------------------------------------------------
+
 		//initializes algorithm
 		public Algorithm(SaveFile Save) {
 			InitializeComponent(); //initializes window
 			save = Save;
 		}
 
+		//runs the algorithm
 		private void Algorithm_Shown(object sender, EventArgs e) {
 			label1.Text = "Initializing..."; //tells user the stuff is setting up
 			Refresh();
 			scenario[] scenarios = Popper(save); //runs Popper algorithm
 			string json = JsonConvert.SerializeObject(scenarios);
+			Debug.WriteLine(json);
+			scenario results = Asca(scenarios); //runs ASCA algorithm
+			json = JsonConvert.SerializeObject(results);
 			Debug.WriteLine(json);
 		}
 	}
