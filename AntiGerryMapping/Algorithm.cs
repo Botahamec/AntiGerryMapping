@@ -334,14 +334,20 @@ namespace AntiGerryMapping {
 
 		//runs the algorithm
 		private void Algorithm_Shown(object sender, EventArgs e) {
+
+			//start
 			label1.Text = "Initializing..."; //tells user the stuff is setting up
 			Refresh();
+
+			//algorithms
 			scenario[] scenarios = Popper(save); //runs Popper algorithm
-			string json = JsonConvert.SerializeObject(scenarios);
-			Debug.WriteLine(json);
 			scenario results = Asca(scenarios); //runs ASCA algorithm
-			json = JsonConvert.SerializeObject(results);
-			Debug.WriteLine(json);
+			results.Districts = results.Districts.OrderBy(o => o.Number).ToArray(); //orders the districts
+
+			//results
+			Results ResultsScreen = new Results(results, save); //sets up results screen
+			ResultsScreen.Show();
+			Close(); //closes current window
 		}
 	}
 }

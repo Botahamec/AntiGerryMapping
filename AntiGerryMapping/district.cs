@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace AntiGerryMapping {
 
-	class district {
+	public class district {
 
 		//properties
 		public int Number { get; set; }
@@ -21,10 +21,20 @@ namespace AntiGerryMapping {
 
 		//gets the population of the district
 		public int Population() {
-			if (Counties == null) { return 0; } //if there are no counties, the population is zero
+			if (Counties == null || Counties.Length == 0) { return 0; } //no counties, no population
 			int population = 0;
 			foreach (county County in Counties) { //loops for each county
 				population += County.population; //adds population of county into the population of the district
+			}
+			return population;
+		}
+
+		//gets the demographic number
+		public int GetDemo(int i) {
+			if (Counties == null || Counties.Length == 0) { return 0; }
+			int population = 0;
+			foreach (county County in Counties) {
+				population += County.demo[i];
 			}
 			return population;
 		}

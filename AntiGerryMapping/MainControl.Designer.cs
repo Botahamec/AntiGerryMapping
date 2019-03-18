@@ -29,7 +29,6 @@
 		private void InitializeComponent()
 		{
 			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.finishButton = new System.Windows.Forms.Button();
 			this.newButton = new System.Windows.Forms.Button();
 			this.deleteButton = new System.Windows.Forms.Button();
@@ -43,7 +42,6 @@
 			this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.label2 = new System.Windows.Forms.Label();
 			this.districtsBox = new System.Windows.Forms.NumericUpDown();
-			this.tabControl1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.districtsBox)).BeginInit();
 			this.SuspendLayout();
@@ -53,23 +51,11 @@
 			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Location = new System.Drawing.Point(12, 54);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new System.Drawing.Size(354, 284);
 			this.tabControl1.TabIndex = 0;
-			// 
-			// tabPage1
-			// 
-			this.tabPage1.AutoScroll = true;
-			this.tabPage1.Location = new System.Drawing.Point(4, 22);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(346, 258);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "County 1";
-			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
 			// finishButton
 			// 
@@ -217,7 +203,8 @@
 			this.MinimumSize = new System.Drawing.Size(394, 418);
 			this.Name = "MainControl";
 			this.Text = "Anti-Gerry Mapping";
-			this.tabControl1.ResumeLayout(false);
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainControl_FormClosing);
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainControl_FormClosed);
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.districtsBox)).EndInit();
@@ -229,7 +216,6 @@
 		#endregion
 
 		private System.Windows.Forms.TabControl tabControl1;
-		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.Button finishButton;
 		private System.Windows.Forms.Button newButton;
 		private System.Windows.Forms.Button deleteButton;

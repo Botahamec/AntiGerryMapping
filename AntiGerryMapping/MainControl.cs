@@ -221,7 +221,6 @@ namespace AntiGerryMapping {
 		public MainControl() {
 			LoadCounties(); //loads from counties.json
 			InitializeComponent(); //initializes app
-			tabControl1.TabPages.Remove(tabPage1); //removes first page
 			InitializeApp(); //creates tabs
 		}
 
@@ -369,6 +368,44 @@ namespace AntiGerryMapping {
 			Algorithm nextWindow = new Algorithm(save);
 			nextWindow.Show();
 			Close();
+		}
+
+		//runs when closing - only does anything if X button clicked
+		private void MainControl_FormClosing(object sender, FormClosingEventArgs e) {
+			if (sender == finishButton) { return; } //doesn't do anything unless it's X button
+
+			//prompts user to save
+			DialogResult answer = MessageBox.Show("Do you want to save?",
+				"Save?",
+				MessageBoxButtons.YesNoCancel,
+				MessageBoxIcon.Warning);
+			switch (answer) {
+
+				//saves if prompted
+				case DialogResult.Yes:
+					save.Save();
+					break;
+
+				//does nothing if prompted
+				case DialogResult.No:
+					break;
+
+				//cancels closing if prompted
+				case DialogResult.Cancel:
+					e.Cancel = true;
+					break;
+			}
+			
+		}
+
+		//ends the application when X button clicked
+		private void MainControl_FormClosed(object sender, FormClosedEventArgs e) {
+			try {
+				if (JsonConvert.SerializeObject(Application.OpenForms) == "[]") {
+					Application.Exit();
+				}
+			}
+			catch(Exception) { return; }
 		}
 	}
 }

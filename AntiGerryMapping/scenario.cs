@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntiGerryMapping {
 
-	class scenario {
+	public class scenario {
 
 		public district[] Districts { get; set; }
 
